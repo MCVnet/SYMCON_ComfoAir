@@ -1,14 +1,14 @@
 {
-  "id": "{9C752C33-E59F-42AD-8F2E-601A26F921C0}",
-  "name": "ZehnderComfoAirQ350",
+  "id": "{79641508-9124-4013-81CA-38074D957138}",
+  "name": "ZehnderComfoAirQ350Native",
   "type": 3,
   "vendor": "Zehnder",
   "aliases": [
-    "Zehnder ComfoAir Q350/Q450 Native"
+    "Zehnder ComfoAir Q350/Q450 Native (Neuinstallation)"
   ],
   "parentRequirements": [],
   "childRequirements": [],
   "implemented": [],
-  "prefix": "ZQ",
+  "prefix": "ZQN",
   "url": "https://github.com/MCVnet/SYMCON-ComfoAir#readme"
 }

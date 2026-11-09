@@ -1,5 +1,5 @@
 <?php
-class ZehnderComfoAirQ350 extends IPSModule
+class ZehnderComfoAirQ350Native extends IPSModule
 {
     // [Label, Protobuf PDO type, Scale factor, Unit]
     private const SENSORS = [
@@ -27,7 +27,7 @@ class ZehnderComfoAirQ350 extends IPSModule
         $this->RegisterPropertyInteger('BoostSeconds', 600);
         $this->RegisterPropertyInteger('BypassSeconds', 3600);
         $this->RegisterAttributeInteger('NodeID', 0);
-        $this->RegisterTimer('SensorTimer', 0, 'ZQ_ReadSensors($_IPS["TARGET"]);');
+        $this->RegisterTimer('SensorTimer', 0, 'ZQN_ReadSensors($_IPS["TARGET"]);');
         $this->RegisterVariableString('ControlStatus', 'Steuerung / Diagnose', '', 9);
         $this->RegisterVariableString('ControlObserved', 'Rückgelesene Betriebszustände', '', 10);
         $this->RegisterVariableString('NodeInfo', 'ComfoNet Knoten', '', 11);
@@ -46,15 +46,15 @@ class ZehnderComfoAirQ350 extends IPSModule
             $this->RegisterVariableFloat('Sensor' . $id, $sensor[0], '', 10 + $id);
         }
         // Bedienvariablen (Sollwerte). Befehle werden nur nach erfolgreicher RMI-Antwort übernommen.
-        $this->registerControlProfile('ZehnderQ350450.Speed', ['Abwesend', 'Niedrig', 'Mittel', 'Hoch']);
-        $this->registerControlProfile('ZehnderQ350450.Mode', ['Automatik', 'Manuell']);
-        $this->registerControlProfile('ZehnderQ350450.Bypass', ['Automatik', 'Ein', 'Aus']);
-        $this->registerControlProfile('ZehnderQ350450.TemperatureProfile', ['Normal', 'Kühl', 'Warm']);
-        $this->RegisterVariableInteger('Speed', 'Lüftungsstufe (Anforderung)', 'ZehnderQ350450.Speed', 20);
-        $this->RegisterVariableInteger('Mode', 'Betriebsart (Anforderung)', 'ZehnderQ350450.Mode', 21);
+        $this->registerControlProfile('ZehnderQ350450Native.Speed', ['Abwesend', 'Niedrig', 'Mittel', 'Hoch']);
+        $this->registerControlProfile('ZehnderQ350450Native.Mode', ['Automatik', 'Manuell']);
+        $this->registerControlProfile('ZehnderQ350450Native.Bypass', ['Automatik', 'Ein', 'Aus']);
+        $this->registerControlProfile('ZehnderQ350450Native.TemperatureProfile', ['Normal', 'Kühl', 'Warm']);
+        $this->RegisterVariableInteger('Speed', 'Lüftungsstufe (Anforderung)', 'ZehnderQ350450Native.Speed', 20);
+        $this->RegisterVariableInteger('Mode', 'Betriebsart (Anforderung)', 'ZehnderQ350450Native.Mode', 21);
         $this->RegisterVariableBoolean('Boost', 'Boost (Anforderung)', '~Switch', 22);
-        $this->RegisterVariableInteger('Bypass', 'Bypass (Anforderung)', 'ZehnderQ350450.Bypass', 23);
-        $this->RegisterVariableInteger('TempProfile', 'Temperaturprofil (Anforderung)', 'ZehnderQ350450.TemperatureProfile', 24);
+        $this->RegisterVariableInteger('Bypass', 'Bypass (Anforderung)', 'ZehnderQ350450Native.Bypass', 23);
+        $this->RegisterVariableInteger('TempProfile', 'Temperaturprofil (Anforderung)', 'ZehnderQ350450Native.TemperatureProfile', 24);
         $this->RegisterVariableString('LastCommand', 'Letzter Steuerbefehl', '', 25);
         foreach (['Speed', 'Mode', 'Boost', 'Bypass', 'TempProfile'] as $ident) {
             $this->EnableAction($ident);

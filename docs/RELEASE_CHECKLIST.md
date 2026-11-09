@@ -1,7 +1,7 @@
 # Release-Checkliste 1.0.3
 
 - [x] `library.json`/`module.json` gültiges JSON, URL-Werte als Strings
-- [x] Bibliotheks- und Modul-GUIDs der Vorversion beibehalten
+- [x] Separate Bibliotheks- und Modul-GUIDs geprüft
 - [x] Modulname entspricht PHP-Klassenname (ohne Leerzeichen)
 - [ ] PHP-Syntaxprüfung im CI-Lauf bestätigen
 - [x] Kachel mit `GetVisualizationTile`, `SetVisualizationType`, `requestAction` überprüft (statisch)

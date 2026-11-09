@@ -78,25 +78,25 @@
     {
       "type": "Button",
       "caption": "Gateway im LAN suchen (UDP)",
-      "onClick": "ZQ_Discover($id); echo GetValue(IPS_GetObjectIDByIdent('State', $id));",
+      "onClick": "ZQN_Discover($id); echo GetValue(IPS_GetObjectIDByIdent('State', $id));",
       "link": false
     },
     {
       "type": "Button",
       "caption": "Registrieren und Verbindung testen",
-      "onClick": "ZQ_TestConnection($id); echo GetValue(IPS_GetObjectIDByIdent('State', $id));",
+      "onClick": "ZQN_TestConnection($id); echo GetValue(IPS_GetObjectIDByIdent('State', $id));",
       "link": false
     },
     {
       "type": "Button",
       "caption": "Sensoren jetzt lesen",
-      "onClick": "ZQ_ReadSensors($id); echo GetValue(IPS_GetObjectIDByIdent('SensorDiagnostics', $id));",
+      "onClick": "ZQN_ReadSensors($id); echo GetValue(IPS_GetObjectIDByIdent('SensorDiagnostics', $id));",
       "link": false
     },
     {
       "type": "Button",
       "caption": "Betriebszustände auslesen",
-      "onClick": "ZQ_ReadControlStatus($id); echo GetValue(IPS_GetObjectIDByIdent('ControlObserved', $id));",
+      "onClick": "ZQN_ReadControlStatus($id); echo GetValue(IPS_GetObjectIDByIdent('ControlObserved', $id));",
       "link": false
     },
     {
@@ -113,25 +113,25 @@
         {
           "type": "Button",
           "caption": "Stufe 0",
-          "onClick": "ZQ_SetSpeed($id, 0); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
+          "onClick": "ZQN_SetSpeed($id, 0); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
           "link": false
         },
         {
           "type": "Button",
           "caption": "Stufe 1",
-          "onClick": "ZQ_SetSpeed($id, 1); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
+          "onClick": "ZQN_SetSpeed($id, 1); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
           "link": false
         },
         {
           "type": "Button",
           "caption": "Stufe 2",
-          "onClick": "ZQ_SetSpeed($id, 2); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
+          "onClick": "ZQN_SetSpeed($id, 2); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
           "link": false
         },
         {
           "type": "Button",
           "caption": "Stufe 3",
-          "onClick": "ZQ_SetSpeed($id, 3); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
+          "onClick": "ZQN_SetSpeed($id, 3); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
           "link": false
         }
       ]
@@ -146,13 +146,13 @@
         {
           "type": "Button",
           "caption": "Automatik",
-          "onClick": "ZQ_SetMode($id, 0); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
+          "onClick": "ZQN_SetMode($id, 0); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
           "link": false
         },
         {
           "type": "Button",
           "caption": "Manuell",
-          "onClick": "ZQ_SetMode($id, 1); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
+          "onClick": "ZQN_SetMode($id, 1); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
           "link": false
         }
       ]
@@ -167,13 +167,13 @@
         {
           "type": "Button",
           "caption": "Boost EIN",
-          "onClick": "ZQ_SetBoost($id, true); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
+          "onClick": "ZQN_SetBoost($id, true); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
           "link": false
         },
         {
           "type": "Button",
           "caption": "Boost AUS",
-          "onClick": "ZQ_SetBoost($id, false); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
+          "onClick": "ZQN_SetBoost($id, false); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
           "link": false
         }
       ]
@@ -188,19 +188,19 @@
         {
           "type": "Button",
           "caption": "Bypass Auto",
-          "onClick": "ZQ_SetBypass($id, 0); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
+          "onClick": "ZQN_SetBypass($id, 0); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
           "link": false
         },
         {
           "type": "Button",
           "caption": "Bypass EIN",
-          "onClick": "ZQ_SetBypass($id, 1); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
+          "onClick": "ZQN_SetBypass($id, 1); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
           "link": false
         },
         {
           "type": "Button",
           "caption": "Bypass AUS",
-          "onClick": "ZQ_SetBypass($id, 2); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
+          "onClick": "ZQN_SetBypass($id, 2); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
           "link": false
         }
       ]
@@ -215,19 +215,19 @@
         {
           "type": "Button",
           "caption": "Normal",
-          "onClick": "ZQ_SetTemperatureProfile($id, 0); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
+          "onClick": "ZQN_SetTemperatureProfile($id, 0); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
           "link": false
         },
         {
           "type": "Button",
           "caption": "Kühl",
-          "onClick": "ZQ_SetTemperatureProfile($id, 1); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
+          "onClick": "ZQN_SetTemperatureProfile($id, 1); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
           "link": false
         },
         {
           "type": "Button",
           "caption": "Warm",
-          "onClick": "ZQ_SetTemperatureProfile($id, 2); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
+          "onClick": "ZQN_SetTemperatureProfile($id, 2); echo GetValue(IPS_GetObjectIDByIdent('ControlStatus', $id));",
           "link": false
         }
       ]
@@ -235,7 +235,7 @@
     {
       "type": "Button",
       "caption": "Zustände nach Steuerung erneut auslesen",
-      "onClick": "ZQ_ReadControlStatus($id); echo GetValue(IPS_GetObjectIDByIdent('ControlObserved', $id));",
+      "onClick": "ZQN_ReadControlStatus($id); echo GetValue(IPS_GetObjectIDByIdent('ControlObserved', $id));",
       "link": false
     },
     {

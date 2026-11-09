@@ -12,3 +12,5 @@ Branch: `main`
 - Dokumentation: `https://github.com/MCVnet/SYMCON-ComfoAir#readme`
 
 Die Store-Freigabe und die Gerätevalidierung können nicht durch dieses Paket erfolgen.
+
+Diese Ausgabe ist für eine separate Neuinstallation mit eigenen GUIDs vorgesehen.

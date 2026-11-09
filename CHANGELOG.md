@@ -1,6 +1,8 @@
 # Changelog
 
-## 1.0.3 – 2026-11-09
+## 1.0.3 – Neuinstallation
+
+- Separate Bibliotheks- und Modul-GUIDs sowie Funktionspräfix ZQN für die Neuinstallation.
 
 - Mini-Kachel beginnt unterhalb der Symcon-Titelzeile und nutzt den Instanztitel der Visualisierung.
 

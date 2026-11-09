@@ -13,8 +13,8 @@ Ein natives IP-Symcon-Modul (SymBox/Windows/Linux) zur lokalen Kommunikation mit
 
 ## Installation in Symcon
 
-1. In **Kerninstanzen → Modules/Modulverwaltung** das Repository `https://github.com/MCVnet/SYMCON-ComfoAir` hinzufügen beziehungsweise aktualisieren.
-2. Unter **Instanz hinzufügen → Zehnder** `Zehnder ComfoAir Q350/Q450 Native` auswählen.
+1. In **Kerninstanzen → Modules/Modulverwaltung** ein separates Repository mit dem entpackten Inhalt dieses ZIPs hinzufügen.
+2. Unter **Instanz hinzufügen → Zehnder** `Zehnder ComfoAir Q350/Q450 Native (Neuinstallation)` auswählen.
 3. Gateway-IP eintragen, Port **56747** bestätigen, Gateway suchen, Registrierung/Verbindung testen.
 4. Das Abfrageintervall konfigurieren (0 = aus; positiver Wert mind. 5 Sekunden). Das Intervall ist eine Timer-Auslösezeit, keine garantierte Messwertfrequenz: der zeitlich begrenzte TCP-Abruf kann länger dauern.
 5. Kachel im Visualisierungs-Editor platzieren, unter `Kachel-Design` Hell oder Dunkel und unter `Kachelansicht` Standard oder Mini wählen.
@@ -30,9 +30,9 @@ Ein natives IP-Symcon-Modul (SymBox/Windows/Linux) zur lokalen Kommunikation mit
 
 **Wichtig:** Bedienvariablen zeigen zuletzt *angeforderte*, nicht garantiert bestätigte Istzustände. Bei Problemen Steuerbefehle deaktivieren und Anlage am Originalbediengerät bedienen.
 
-## Update & bestehende Instanzen
+## Neuinstallation und bestehende Instanzen
 
-Die bisherige Bibliotheks-GUID `{DA63B40E-7893-4970-8ED3-DFCA09B24C31}` und Modul-GUID `{9C752C33-E59F-42AD-8F2E-601A26F921C0}` bleiben erhalten. Bestehende Instanzen müssen deswegen normalerweise nicht neu angelegt werden. Vor dem Update Symcon-Backup erstellen. Nur *eine* Kopie des Moduls in der Modulverwaltung betreiben.
+Diese Ausgabe hat eigene Bibliotheks- und Modul-GUIDs. Neue Instanzen werden mit dem Zusatz **(Neuinstallation)** angelegt. Einstellungen und Verknüpfungen bestehender Instanzen müssen bei einem Wechsel manuell übertragen werden.
 
 ## Veröffentlichung
 
