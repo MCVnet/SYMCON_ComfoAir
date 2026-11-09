@@ -147,16 +147,28 @@ class ZehnderComfoAirQ350Native extends IPSModule
     {
         try {
             $host = trim($this->ReadPropertyString('Host'));
-            // Unicast discovery also works on some devices; broadcast may require network permissions.
             $target = $host !== '' ? $host : '255.255.255.255';
-            $errno = 0; $errstr = '';
-            $socket = @stream_socket_client('udp://' . $target . ':56747', $errno, $errstr, 3);
-            if ($socket === false) { throw new Exception($errstr ?: 'UDP-Socket fehlgeschlagen'); }
-            stream_set_timeout($socket, 3);
-            fwrite($socket, "\x0a\x00");
-            $reply = fread($socket, 2048);
-            fclose($socket);
-            if (!$reply) { throw new Exception('Keine Discovery-Antwort. IP-Adresse prüfen; ggf. UDP-Broadcast im Netzwerk blockiert.'); }
+            if (!filter_var($target, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+                throw new Exception('Bitte eine gültige IPv4-Adresse für die Gateway-Suche eintragen.');
+            }
+            $context = stream_context_create(['socket' => ['so_broadcast' => $target === '255.255.255.255']]);
+            // Bind locally so the gateway can reply directly to the source port.
+            $socket = @stream_socket_server('udp://0.0.0.0:0', $errno, $errstr, STREAM_SERVER_BIND, $context);
+            if ($socket === false) {
+                throw new Exception('UDP-Socket konnte nicht geöffnet werden: ' . $errstr);
+            }
+            try {
+                stream_set_timeout($socket, 3);
+                if (@stream_socket_sendto($socket, "\x0a\x00", 0, $target . ':56747') !== 2) {
+                    throw new Exception('UDP-Anfrage konnte nicht gesendet werden. Lokalen Netzwerkzugriff prüfen oder Gateway-IP eintragen.');
+                }
+                $reply = @stream_socket_recvfrom($socket, 2048, 0, $sender);
+            } finally {
+                fclose($socket);
+            }
+            if (!$reply) {
+                throw new Exception('Keine UDP-Antwort. Gateway-IP und Netzwerkzugriff prüfen.');
+            }
             $outer = $this->parse($reply);
             if (!isset($outer[2])) { throw new Exception('Keine SearchGatewayResponse'); }
             $inner = $this->parse($outer[2]);
@@ -164,7 +176,8 @@ class ZehnderComfoAirQ350Native extends IPSModule
             $uuid = bin2hex($inner[2]);
             $this->WriteAttributeString('BridgeUUID', $uuid);
             $this->SetValue('Bridge', $uuid);
-            $this->SetValue('State', 'Gateway gefunden: ' . ($inner[1] ?? $target));
+            $address = explode(':', $sender, 2)[0];
+            $this->SetValue('State', 'Gateway gefunden: ' . $address);
         } catch (Throwable $e) {
             $this->SetValue('State', 'Discovery fehlgeschlagen: ' . $e->getMessage());
         }

@@ -1,12 +1,12 @@
 {
   "id": "{0145AFE7-E6B2-4CF3-94A1-D4FADE63EDA7}",
   "author": "Matthias Vogel",
-  "name": "Zehnder ComfoAir Q350 Q450 Native (Neuinstallation)",
+  "name": "Zehnder ComfoAir Q350 Q450 Native",
   "url": "https://github.com/MCVnet/SYMCON-ComfoAir",
   "compatibility": {
     "version": "7.1"
   },
-  "version": "1.0.3",
-  "build": 103,
+  "version": "1.0.4",
+  "build": 104,
   "date": 1794182400
 }

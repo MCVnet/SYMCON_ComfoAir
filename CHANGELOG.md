@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.4
+
+- LAN-Suche verwendet einen UDP-Socket mit expliziter Broadcast-Freigabe.
+- Die Suche zeigt bei Erfolg die IP-Adresse des antwortenden Gateways an.
+
 ## 1.0.3 – Neuinstallation
 
 - Separate Bibliotheks- und Modul-GUIDs sowie Funktionspräfix ZQN für die Neuinstallation.
