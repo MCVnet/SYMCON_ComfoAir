@@ -5,7 +5,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
 * { box-sizing: border-box; }
-body { margin: 0; font: 13px/1.3 system-ui, sans-serif; }
+body {
+  margin: 0;
+  /* Symcon draws the instance title and expand control over the HTML tile. */
+  padding: 32px 8px 8px;
+  font: 13px/1.3 system-ui, sans-serif;
+}
 .tile {
   --bg: #f4f7fa; --ink: #14263b; --muted: #526b80;
   --border: #dae5ec; --accent: #007f91; --surface: #fff; --error: #b52e29;
@@ -49,9 +54,8 @@ select:disabled, button:disabled { opacity: .55; cursor: default; }
 </style>
 </head>
 <body>
-<main id="app" class="tile">
+<main id="app" class="tile" aria-label="ComfoAir Messwerte und Steuerung">
   <header>
-    <strong>ComfoAir Q350/Q450</strong>
     <span id="status" class="secondary" role="status">Wird geladen</span>
   </header>
   <dl class="readings">

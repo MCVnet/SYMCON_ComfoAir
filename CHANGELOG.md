@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.3 – 2026-11-09
+
+- Mini-Kachel beginnt unterhalb der Symcon-Titelzeile und nutzt den Instanztitel der Visualisierung.
+
 ## 1.0.2 – 2026-11-09
 
 - Wählbare Mini-Kachel mit drei Temperaturen auf einen Blick sowie ausklappbaren Messwerten und Steueroptionen.

@@ -1,8 +1,8 @@
-# Zehnder ComfoAir Q350/Q450 Native – Version 1.0.2
+# Zehnder ComfoAir Q350/Q450 Native – Version 1.0.3
 
 Ein natives IP-Symcon-Modul (SymBox/Windows/Linux) zur lokalen Kommunikation mit **Zehnder ComfoAir Q350/Q450** über die **ComfoConnect LAN C**. Keine Cloud, kein Docker, kein separater Python-Dienst.
 
-> **Freigabestatus:** GitHub-Release-Kandidat 1.0.2. Die Sensordaten wurden auf einer Q350-Anlage im Projekt erfolgreich ausgelesen. Steuerbefehle und Q450-Kompatibilität sind noch nicht vollständig mit echter Hardware validiert. Der Release ist **kein nachgewiesen produktionsreifer Stable-Release**.
+> **Freigabestatus:** GitHub-Release-Kandidat 1.0.3. Die Sensordaten wurden auf einer Q350-Anlage im Projekt erfolgreich ausgelesen. Steuerbefehle und Q450-Kompatibilität sind noch nicht vollständig mit echter Hardware validiert. Der Release ist **kein nachgewiesen produktionsreifer Stable-Release**.
 
 ## Voraussetzungen
 
