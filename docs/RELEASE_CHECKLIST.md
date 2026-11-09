@@ -1,9 +1,9 @@
-# Release-Checkliste 1.0.1
+# Release-Checkliste 1.0.2
 
 - [x] `library.json`/`module.json` gültiges JSON, URL-Werte als Strings
 - [x] Bibliotheks- und Modul-GUIDs der Vorversion beibehalten
 - [x] Modulname entspricht PHP-Klassenname (ohne Leerzeichen)
-- [x] PHP-Datei syntaktisch geprüft
+- [ ] PHP-Syntaxprüfung im CI-Lauf bestätigen
 - [x] Kachel mit `GetVisualizationTile`, `SetVisualizationType`, `requestAction` überprüft (statisch)
 - [x] Keine Live-Verbindung/Client Socket im Polling-Modul
 - [x] GitHub Actions statische Prüfung angelegt
@@ -15,4 +15,4 @@
 - [ ] Lizenz- und Bildnutzungsrechte verbindlich klären
 - [ ] Abschlussprüfung im Symcon Module Store durchführen
 
-Der Name Version 1.0.1 bedeutet nicht, dass die ausstehenden Punkte erledigt sind. Für einen Stable-Store-Release müssen die offenen Prüfpunkte nachgeholt werden.
+Der Name Version 1.0.2 bedeutet nicht, dass die ausstehenden Punkte erledigt sind. Für einen Stable-Store-Release müssen die offenen Prüfpunkte nachgeholt werden.

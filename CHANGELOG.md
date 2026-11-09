@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2 – 2026-11-09
+
+- Wählbare Mini-Kachel mit drei Temperaturen auf einen Blick sowie ausklappbaren Messwerten und Steueroptionen.
+- Beide Ansichten unterstützen Hell und Dunkel.
+- Bibliotheks- und Modul-GUIDs aus 1.0.1 übernommen.
+
 ## 1.0.1 – 2026-11-07
 
 - Einheitliches Grid-/Flex-Layout ersetzt die gestapelten Beta-CSS-Regeln.

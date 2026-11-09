@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; font: 13px/1.3 system-ui, sans-serif; }
+.tile {
+  --bg: #f4f7fa; --ink: #14263b; --muted: #526b80;
+  --border: #dae5ec; --accent: #007f91; --surface: #fff; --error: #b52e29;
+  color-scheme: light; max-width: 272px; margin-inline: auto;
+  padding: 10px 12px 0; border: 1px solid var(--border);
+  border-radius: 12px; background: var(--bg); color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.tile.dark {
+  --bg: #101a23; --ink: #edf7fa; --muted: #b0c6d1;
+  --border: #36515d; --accent: #61ded0; --surface: #1d303e; --error: #ffaaa4;
+  color-scheme: dark;
+}
+header, summary { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 8px; }
+.secondary { color: var(--muted); font-size: 11px; }
+#status.ok { color: var(--accent); }
+dl { margin: 8px 0; }
+.readings { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 6px; }
+dd { margin: 2px 0 0; font-variant-numeric: tabular-nums; }
+.readings dd { font-size: 17px; font-weight: 700; }
+details { border-top: 1px solid var(--border); }
+details:not([open]) > :not(summary) { display: none; }
+summary { min-height: 44px; cursor: pointer; list-style: none; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "⌄"; }
+details[open] summary::after { content: "⌃"; }
+.more > div { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2px 8px; margin-bottom: 6px; }
+.more dd { margin: 0; }
+.controls { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; padding: 8px 0; border-top: 1px solid var(--border); }
+.controls label { display: grid; min-width: 0; gap: 3px; }
+.controls label:last-child { grid-column: 1 / -1; }
+select, button { min-width: 0; min-height: 44px; padding: 4px 6px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); color: inherit; }
+select { width: 100%; font: 16px system-ui, sans-serif; }
+button { font: inherit; cursor: pointer; overflow-wrap: anywhere; }
+select:disabled, button:disabled { opacity: .55; cursor: default; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.toolbar { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; margin-bottom: 10px; }
+#error { color: var(--error); margin-bottom: 8px; }
+#error:empty { display: none; }
+@media (max-width: 210px) { .controls, .toolbar { grid-template-columns: minmax(0,1fr); } }
+</style>
+</head>
+<body>
+<main id="app" class="tile">
+  <header>
+    <strong>ComfoAir Q350/Q450</strong>
+    <span id="status" class="secondary" role="status">Wird geladen</span>
+  </header>
+  <dl class="readings">
+    <div><dt class="secondary">Außenluft</dt><dd><span data-val="276">—</span> <span class="secondary">°C</span></dd></div>
+    <div><dt class="secondary">Zuluft</dt><dd><span data-val="221">—</span> <span class="secondary">°C</span></dd></div>
+    <div><dt class="secondary">Abluft</dt><dd><span data-val="274">—</span> <span class="secondary">°C</span></dd></div>
+  </dl>
+  <details>
+    <summary>
+      <span>Details &amp; Steuerung</span>
+      <span id="requested" class="secondary" title="Letzte Anforderung">—</span>
+    </summary>
+    <dl class="more">
+      <div><dt>Fortluft</dt><dd><span data-val="275">—</span> °C</dd></div>
+      <div><dt>Volumenstrom Zu / Ab</dt><dd><span data-val="120">—</span> / <span data-val="119">—</span> m³/h</dd></div>
+      <div><dt>Leistung</dt><dd><span data-val="128">—</span> W</dd></div>
+      <div><dt>Filter-Restlaufzeit</dt><dd><span data-val="192">—</span> Tage</dd></div>
+    </dl>
+    <div class="controls" aria-label="Steuerung">
+      <label><span class="secondary">Lüftungsstufe</span>
+        <select data-action="Speed"><option value="" disabled>—</option><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select>
+      </label>
+      <label><span class="secondary">Betriebsart</span>
+        <select data-action="Mode"><option value="" disabled>—</option><option value="0">Automatik</option><option value="1">Manuell</option></select>
+      </label>
+      <label><span class="secondary">Boost</span>
+        <select data-action="Boost"><option value="" disabled>—</option><option value="0">Aus</option><option value="1">Ein</option></select>
+      </label>
+      <label><span class="secondary">Bypass</span>
+        <select data-action="Bypass"><option value="" disabled>—</option><option value="0">Auto</option><option value="1">Ein</option><option value="2">Aus</option></select>
+      </label>
+      <label><span class="secondary">Temperaturprofil</span>
+        <select data-action="TempProfile"><option value="" disabled>—</option><option value="0">Normal</option><option value="1">Kühl</option><option value="2">Warm</option></select>
+      </label>
+    </div>
+    <div class="toolbar">
+      <button type="button" data-action="TileRefresh">Messwerte lesen</button>
+      <button type="button" data-action="TileReadStatus">Betriebszustände lesen</button>
+    </div>
+    <div id="error" role="alert"></div>
+  </details>
+</main>
+<script>
+let state = __INITIAL_STATE__;
+const app = document.getElementById('app');
+const statusLabel = document.getElementById('status');
+const requested = document.getElementById('requested');
+const error = document.getElementById('error');
+const controls = [...app.querySelectorAll('[data-action]')];
+let busy = false;
+
+function render() {
+    app.classList.toggle('dark', state.theme === 'dark');
+    app.querySelectorAll('[data-val]').forEach(element => {
+        const value = state.values?.[element.dataset.val];
+        element.textContent = value == null ? '—' : Number(value).toLocaleString('de-DE', { maximumFractionDigits: 1 });
+    });
+
+    const ok = String(state.connection || '').includes('Sensorabfrage abgeschlossen');
+    statusLabel.textContent = ok ? '● Messwerte OK' : 'Status prüfen';
+    statusLabel.classList.toggle('ok', ok);
+
+    const requests = state.requests || {};
+    const mode = ['Auto', 'Manuell'][requests.Mode];
+    requested.textContent = [
+        requests.Speed == null ? '' : 'Stufe ' + requests.Speed,
+        mode || ''
+    ].filter(Boolean).join(' · ') || '—';
+
+    controls.forEach(control => {
+        const isSelect = control.tagName === 'SELECT';
+        control.disabled = busy || (isSelect && !state.enabled);
+        if (isSelect) {
+            const value = requests[control.dataset.action];
+            control.value = value == null ? '' : String(Number(value));
+        }
+    });
+}
+
+function handleMessage(message) {
+    try {
+        const next = typeof message === 'string' ? JSON.parse(message) : message;
+        if (!next || typeof next !== 'object' || Array.isArray(next)) {
+            throw new Error('Ungültiger Zustand');
+        }
+        state = next;
+        render();
+    } catch (e) {
+        error.textContent = 'Datenaktualisierung fehlgeschlagen';
+    }
+}
+
+async function send(control) {
+    const isSelect = control.tagName === 'SELECT';
+    if (busy || (isSelect && (!state.enabled || control.value === ''))) return;
+
+    const action = control.dataset.action;
+    const value = !isSelect ? '' : action === 'Boost' ? control.value === '1' : Number(control.value);
+    busy = true;
+    error.textContent = '';
+    controls.forEach(element => { element.disabled = true; });
+    try {
+        await requestAction(action, value);
+    } catch (e) {
+        error.textContent = String(e.message || e);
+    } finally {
+        busy = false;
+        render();
+    }
+}
+
+controls.forEach(control => {
+    control.addEventListener(control.tagName === 'SELECT' ? 'change' : 'click', () => send(control));
+});
+render();
+</script>
+</body>
+</html>

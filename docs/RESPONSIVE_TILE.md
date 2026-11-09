@@ -1,9 +1,9 @@
-# Responsive HTML-Kachel – Version 1.0.1 (Basis v1.0.0)
+# Responsive HTML-Kacheln
 
 Basis: MCVnet/SYMCON-ComfoAir, Commit `f4d5fe4` (v1.0.0 in library.json).
 Bibliotheks- und Modul-ID, PHP-Code, Sensorzuordnung, Steuerbefehle bleiben unverändert.
-Paketversion: 1.0.1, Build 101, Releasedatum: 2026-11-07. Zum Aktualisieren einer vorhandenen
-Installation reicht der Austausch von `ZehnderQ350/module.html`.
+Ab Version 1.0.2 ist die Mini-Kachel über die Einstellung `Kachelansicht` wählbar.
+Für das Update das vollständige Modulpaket verwenden.
 
 ## Verhalten
 
@@ -45,7 +45,7 @@ alle acht Sensorfelder, beide Themes, alle vorhandenen Action-Payloads inklusive
 Boost-Boolean, JSON-/Objekt-Updates, aktive und deaktivierte Steuerung,
 fehlende Sensorwerte, fehlerhafte Nachrichten, fehlgeschlagene Aktionen und Drawer.
 
-Die PHP-Datei ist bytegleich zur Basis. Lokal ist kein PHP installiert;
+Die PHP-Änderung wählt anhand der neuen Einstellung die HTML-Vorlage. Lokal ist kein PHP installiert;
 die PHP-Syntaxprüfung ist daher lokal nicht ausgeführt, sondern für CI eingerichtet.
 Die neue CI-Konfiguration wurde noch nicht auf GitHub ausgeführt.
 

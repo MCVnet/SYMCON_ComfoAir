@@ -20,6 +20,21 @@
       ]
     },
     {
+      "type": "Select",
+      "name": "TileLayout",
+      "caption": "Kachelansicht",
+      "options": [
+        {
+          "caption": "Standard",
+          "value": "standard"
+        },
+        {
+          "caption": "Mini",
+          "value": "mini"
+        }
+      ]
+    },
+    {
       "type": "ValidationTextBox",
       "name": "Host",
       "caption": "IP-Adresse ComfoConnect LAN C"

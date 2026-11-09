@@ -23,6 +23,7 @@ class ZehnderComfoAirQ350 extends IPSModule
         $this->RegisterPropertyInteger('Interval', 0);
         $this->RegisterPropertyBoolean('EnableControl', false);
         $this->RegisterPropertyString('TileTheme', 'light');
+        $this->RegisterPropertyString('TileLayout', 'standard');
         $this->RegisterPropertyInteger('BoostSeconds', 600);
         $this->RegisterPropertyInteger('BypassSeconds', 3600);
         $this->RegisterAttributeInteger('NodeID', 0);
@@ -648,7 +649,8 @@ class ZehnderComfoAirQ350 extends IPSModule
 
     public function GetVisualizationTile()
     {
-        $html = file_get_contents(__DIR__ . '/module.html');
+        $template = $this->ReadPropertyString('TileLayout') === 'mini' ? 'module-mini.html' : 'module.html';
+        $html = file_get_contents(__DIR__ . '/' . $template);
         $state = json_encode($this->tileState(), JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
         return str_replace('__INITIAL_STATE__', $state ?: '{}', $html);
     }
